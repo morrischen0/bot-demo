@@ -100,6 +100,17 @@ def handle_message(event):
         message = TextSendMessage(text=msg)
         line_bot_api.reply_message(event.reply_token, message)
 
+#0425改動
+#景點定位 --> 雙路線 (1. 台科路線 / 2. 公館商圈路線)
+       #1.台科線 (神樹 -> 農試所 -> 公廁 -> 造型圍欄 -> 農試所宿舍2 -> 夫妻樹 -> 古道 -> 瑠公圳)
+       #2.公館商圈線(瑠公圳 -> 古道 -> ... -> 神樹)
+
+#訂餐+預約1 --> GOOGLE表單連結 ( 菜單內容 -> 內用 )
+#訂餐2 --> 連接外送平台熊貓
+
+#
+
+    
 @handler.add(PostbackEvent)
 def handle_message(event):
     print(event.postback.data)
