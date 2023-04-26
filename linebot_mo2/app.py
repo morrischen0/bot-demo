@@ -62,8 +62,8 @@ def handle_follow(event):
     text_message3 = TextSendMessage(text="台北市這幾年開啟了無圍牆博物館計畫，「城市是一座沒有邊界的博物館，你，身處其中，聽，臺北的聲音，故事，就在你身邊流動。」 \n https://ecomuseums.gov.taipei/Default.aspx")
 
     image_message = ImageSendMessage(
-        original_content_url="https://upload.cc/i1/2023/04/26/Ct9dBG.jpg",
-        preview_image_url="https://upload.cc/i1/2023/04/26/Ct9dBG.jpg"
+        original_content_url="https://i.imgur.com/uzOQLfo.jpg",
+        preview_image_url="https://i.imgur.com/uzOQLfo.jpg"
     )
 
     line_bot_api.reply_message(event.reply_token, [text_message1,text_message2,text_message3,image_message])
@@ -148,8 +148,8 @@ def handle_message(event):
             text="陳治旭以馬祖的風燈為發想，改變原本複雜的多面造型，運用牛奶盒四面的簡易骨架，上方糊上白棉紙，再將居民家族故事的剪紙貼上。只是社區希望作品能保存較長久的時間，於是將剪紙圖樣轉換成絹印的方式印製在布上，套入防水的牛奶盒造型骨架。陳治旭藝術家希望能持續進行家徽燈的創作，讓眷村的家族故事，像家徽燈一樣，散發出溫暖光芒。"
         )
         image_message =ImageSendMessage(
-            original_content_url='https://upload.cc/i1/2023/04/26/5DV8c9.png',
-            preview_image_url='https://upload.cc/i1/2023/04/26/5DV8c9.png'
+            original_content_url='https://i.imgur.com/rsplSV9.png',
+            preview_image_url='https://i.imgur.com/rsplSV9.png'
         )
 
         line_bot_api.reply_message(event.reply_token, [text_message1,text_message2,text_message3,text_message4,image_message])
@@ -180,8 +180,8 @@ def handle_message(event):
     #景點故事七項
     if '景點故事並開始折價挑戰' in msg:
         image_message = ImageSendMessage(
-        original_content_url='https://upload.cc/i1/2023/04/26/LTjJE9.jpg',
-        preview_image_url='https://upload.cc/i1/2023/04/26/LTjJE9.jpg'
+        original_content_url='https://i.imgur.com/wHa8qnG.jpg',
+        preview_image_url='https://i.imgur.com/wHa8qnG.jpg'
         )
 
         message1 = TemplateSendMessage(
@@ -206,23 +206,6 @@ def handle_message(event):
                     PostbackAction(
                         label='瑠公圳造型圍欄',
                         data='造型圍欄',
-                     ),
-                    PostbackAction(
-                        #宿舍2故事待補
-                        label='農試所宿舍2',
-                        data='農試所2',
-                     ),
-                    PostbackAction(
-                        label='夫妻樹',
-                        data='夫妻樹',
-                     ),
-                    PostbackAction(
-                        label='古道',
-                        data='古道',
-                     ),
-                    PostbackAction(
-                        label='瑠公圳',
-                        data='瑠公圳',
                      )
                 ]
             ),
@@ -260,7 +243,7 @@ def handle_message(event):
         message3 = TemplateSendMessage(
             alt_text='ButtonsTemplate',
             template=ButtonsTemplate(
-            thumbnail_image_url='https://scontent.ftpe8-4.fna.fbcdn.net/v/t39.30808-6/324237402_919417792388738_370498147454953229_n.jpg?stp=cp6_dst-jpg&_nc_cat=104&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Ke5RACu0YW4AX_2DpAp&_nc_ht=scontent.ftpe8-4.fna&oh=00_AfA7KYhoZO30wTGfRHuYTvdFwg3oNFTeEQnmUVFmWvICXQ&oe=644EA8A8',
+            thumbnail_image_url='https://mag.clab.org.tw/wp-content/uploads/2021/01/07-3.jpg',
                 title='折價挑戰問答',
                 text='折價挑戰問答的題目皆出自「景點故事」中的內容，共有三題，準備好了就開始吧！ ',
                 actions=[
@@ -286,8 +269,8 @@ def handle_message(event):
     #景點故事recall
     if '再看景點故事' in msg:
         image_message = ImageSendMessage(
-        original_content_url='https://upload.cc/i1/2023/04/26/LTjJE9.jpg',
-        preview_image_url='https://upload.cc/i1/2023/04/26/LTjJE9.jpg'
+        original_content_url='https://i.imgur.com/wHa8qnG.jpg',
+        preview_image_url='https://i.imgur.com/wHa8qnG.jpg'
         )
 
         message1 = TemplateSendMessage(
@@ -313,7 +296,20 @@ def handle_message(event):
                     PostbackAction(
                         label='瑠公圳造型圍欄',
                         data='造型圍欄',
-                     ),
+                     )
+                ]
+            ),
+            image_aspect_ratio='rectangle',
+            image_size='cover',
+            messages1=[image_message,template]
+        )
+        message2 = TemplateSendMessage(
+            alt_text='ButtonsTemplate',
+            template=ButtonsTemplate(
+                thumbnail_image_url='https://mag.clab.org.tw/wp-content/uploads/2021/01/07-3.jpg',
+                title='景點故事介紹',
+                text='請選擇想要觀看的景點故事內容 : ',
+                actions=[
                     PostbackAction(
                         #宿舍2故事待補
                         label='農試所宿舍2',
@@ -332,12 +328,9 @@ def handle_message(event):
                         data='瑠公圳',
                      )
                 ]
-            ),
-            image_aspect_ratio='rectangle',
-            image_size='cover',
-            messages1=[image_message,template]
+            )
         )
-        line_bot_api.reply_message(event.reply_token, message1)
+        line_bot_api.reply_message(event.reply_token, [message1,message2])
 #---------------------------------處理選擇之後的事件---------------------------------
 
 
@@ -348,7 +341,7 @@ def sent_gametemp(msg):
             template = TemplateSendMessage(
                 alt_text='ButtonsTemplate',
                 template=ButtonsTemplate(
-                thumbnail_image_url='https://upload.cc/i1/2023/04/26/v30SR8.jpg',
+                thumbnail_image_url='https://i.imgur.com/Q2aTjmP.jpg',
                     title='折價挑戰問答',
                     text='第一題 :  ',
                     actions=[
@@ -374,7 +367,7 @@ def sent_gametemp(msg):
             template = TemplateSendMessage(
                 alt_text='ButtonsTemplate',
                 template=ButtonsTemplate(
-                thumbnail_image_url='https://upload.cc/i1/2023/04/26/XsliyP.jpg',
+                thumbnail_image_url='https://i.imgur.com/3YKefkT.jpg',
                     title='折價挑戰問答',
                     text='第二題 :  ',
                     actions=[
@@ -400,7 +393,7 @@ def sent_gametemp(msg):
             template = TemplateSendMessage(
                 alt_text='ButtonsTemplate',
                 template=ButtonsTemplate(
-                thumbnail_image_url='https://upload.cc/i1/2023/04/26/hKljzO.jpg',
+                thumbnail_image_url='https://i.imgur.com/S7Znt1B.jpg',
                     title='折價挑戰問答',
                     text='第三題 :  ',
                     actions=[
@@ -426,13 +419,12 @@ def sent_gametemp(msg):
 @handler.add(PostbackEvent)
 def handle_message(event):
     data = event.postback.data
-    
     #景點故事7個
     if data == '護村神樹':
         text_message = TextSendMessage(text="兩棵老樹(正榕、雀榕) 於2013年被社區提報為市定老樹，成功阻擋將要拆除眷村的怪手，因此居民匿稱他們為護村神樹。2019年台科大為兩棵老樹打開樹穴，讓大樹爺爺可以好好的喘口氣啦！")
         image_message = ImageSendMessage(
-            original_content_url='https://upload.cc/i1/2023/04/26/v30SR8.jpg',
-            preview_image_url='https://upload.cc/i1/2023/04/26/v30SR8.jpg'
+            original_content_url='https://i.imgur.com/Q2aTjmP.jpg',
+            preview_image_url='https://i.imgur.com/Q2aTjmP.jpg'
         )
         line_bot_api.reply_message(event.reply_token, [text_message,image_message])
     elif data == '農試所1':
@@ -443,37 +435,37 @@ def handle_message(event):
             text="洋菇之父胡開仁\n胡開仁，又稱為「臺灣洋菇之父」。出生於1921年，隨國民政府來臺，一生都在蟾蜍山農業試驗所擔任研究員。蟾蜍山農業試驗所宿舍群70號為胡開仁宿舍。\n在洋菇只能從日本進口來臺的年代，胡開仁請友人海運洋菇菌絲到臺，成功培育出臺灣自產洋菇並外銷，當年為臺灣創造出世界第一、1億美元外銷的亮眼成績。胡開仁先生一生都致力於培育洋菇，也全臺奔走教導農民們如何種植洋菇，更將「西洋菌培養法」寫成書，因而有「洋菇之父」稱號。"
             )
         image_message = ImageSendMessage(
-            original_content_url='https://upload.cc/i1/2023/04/26/XsliyP.jpg',
-            preview_image_url='https://upload.cc/i1/2023/04/26/XsliyP.jpg'
+            original_content_url='https://i.imgur.com/3YKefkT.jpg',
+            preview_image_url='https://i.imgur.com/3YKefkT.jpg'
         )
         line_bot_api.reply_message(event.reply_token, [text_message1,text_message2,image_message])
     elif data == '公廁':
         text_message = TextSendMessage(text="可以稍微休息上個廁所囉~ 在早期眷村的沒有廁所，只能依賴它，現在為第四代公廁，以前僅有一半大，旁邊還有棵「金龜子樹」，可掛繩子玩盪鞦韆。在沒路燈的年代，夜晚黑壓壓一片，十分可怕！")
         image_message = ImageSendMessage(
-            original_content_url='https://upload.cc/i1/2023/04/26/dPHm0S.jpg',
-            preview_image_url='https://upload.cc/i1/2023/04/26/dPHm0S.jpg'
+            original_content_url='https://i.imgur.com/zzuL4ha.jpg',
+            preview_image_url='https://i.imgur.com/zzuL4ha.jpg'
         )
         line_bot_api.reply_message(event.reply_token, [text_message,image_message])
     elif data == '造型圍欄':
         text_message = TextSendMessage(text="猜到了嗎？這是「水」字型的圍欄，它與以前社區旁的瑠公圳圍欄相同，目前仍有幾處被保存著。")
         image_message = ImageSendMessage(
-            original_content_url='https://upload.cc/i1/2023/04/26/hKljzO.jpg',
-            preview_image_url='https://upload.cc/i1/2023/04/26/hKljzO.jpg'
+            original_content_url='https://i.imgur.com/S7Znt1B.jpg',
+            preview_image_url='https://i.imgur.com/S7Znt1B.jpg'
         )
         line_bot_api.reply_message(event.reply_token, [text_message,image_message])
     elif data == '農試所2':
         text_message1 = TextSendMessage(text="農試所&蠶改場宿舍第二站")
         text_message2 = TextSendMessage(text="農農業試驗所宿舍於1905年4月前在蟾蜍山下的今119巷街道旁陸續興建，養蠶所宿舍則於1910年代初期陸續設置。1958年，隨著畜產系改隸，位在半山腰的整排養豬舍則改建為農試所宿舍。隨著家庭成員增加，這些房舍的內部格局也因應需求做了改建。居住在這裡的研究人員與行政人員，在完善組織合作下所進行的菇類、花生、雞禽、柑橘、藥用植物、土壤肥料、桑蠶等的培育，為臺灣農業技術與經濟發展寫下新頁。\n隨著1977年農試所遷到霧峰、蠶業改良場遷至苗栗，宿舍所在地也於2000年因都市計畫被劃為臺灣科技大學校地，至2022年員工住戶已全數搬離。然經民間團體與原住戶的努力爭取，2018年10月15日有八棟宿舍公告為臺北市歷史建築，名稱為「農業試驗所宿舍群」及「蠶業改良所宿舍」。")
         image_message = ImageSendMessage(
-            original_content_url='https://postimg.cc/wtB4Rn2W',
-            preview_image_url='https://postimg.cc/wtB4Rn2W'
+            original_content_url='https://i.imgur.com/3452TMO.jpg',
+            preview_image_url='https://i.imgur.com/3452TMO.jpg'
         )
         line_bot_api.reply_message(event.reply_token, [text_message1,text_message2,image_message])
     elif data == '夫妻樹':
         text_message = TextSendMessage(text="舊為農試所畜產系，中庭種植的兩棵小葉南洋杉一高一矮就好像一對夫妻，因此被暱稱為「夫妻樹」，幾年前因風災倒塌一棵，過了幾年又長出來了，他們就像夫妻一樣彼此分不開。\n建築拆除後成為社區的小公園，有公共藝術與夜間太陽能照明等。")
         image_message = ImageSendMessage(
-            original_content_url='https://upload.cc/i1/2023/04/26/erNgFb.jpg',
-            preview_image_url='https://upload.cc/i1/2023/04/26/erNgFb.jpg'
+            original_content_url='https://i.imgur.com/0NUZxSG.jpg',
+            preview_image_url='https://i.imgur.com/0NUZxSG.jpg'
         )
         line_bot_api.reply_message(event.reply_token, [text_message,image_message])
     elif data == '古道':
@@ -486,8 +478,17 @@ def handle_message(event):
     elif data == '瑠公圳':
         text_message = TextSendMessage(text="「我家門前有小河，後面有山坡」是過往蟾蜍山的生活寫照，沿著119巷潺潺而流的瑠公圳水質清澈，是孩子們玩水抓魚、大人洗衣游泳的好去處。\n瑠公圳為郭錫瑠（後人尊稱為瑠公」）所規劃創建。瑠公原利用陂塘開墾興雅庄一帶土地，但因陂塘只能仰賴天候積蓄雨水，加上土石淤積，於是水源漸漸不足。瑠公圳經過今景美、公館、大安區、信義區、松山等地。1970年代臺灣經濟起飛後，臺北的農地越來越少、水源也逐漸受到污染，遂加蓋轉作都市排水使用至今。")
         image_message = ImageSendMessage(
-            original_content_url='https://upload.cc/i1/2023/04/26/yhrIvs.jpg',
-            preview_image_url='https://upload.cc/i1/2023/04/26/yhrIvs.jpg'
+            original_content_url='https://i.imgur.com/men4pH1.jpg',
+            preview_image_url='https://i.imgur.com/men4pH1.jpg'
+        )
+        line_bot_api.reply_message(event.reply_token, [text_message,image_message])
+
+    #蟾蜍山簡介
+    if data == '關於蟾蜍山':
+        text_message = TextSendMessage(text="蟾蜍山聚落位於臺北盆地南端、臺大公館商圈旁。\n山城聚落內保留了都市發展的軌跡，包含清代的水利設施、日治時期的農業研究佈局、中美協防的軍事地景、臺北市目前唯一完整保留的空軍眷村「煥民新村」、結合軍眷及臺北城鄉移民的自力營造聚落等，因其豐富的歷史文化及生態資源，2014年被指定為臺北市文化景觀。")
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/uzOQLfo.jpg',
+            preview_image_url='https://i.imgur.com/uzOQLfo.jpg'
         )
         line_bot_api.reply_message(event.reply_token, [text_message,image_message])
 
@@ -551,8 +552,8 @@ def handle_message(event):
         text_message0 = TextSendMessage(text="答錯了...沒關係 ! 再挑戰一次 ! 可以再看一次故事確認答案喔~")
         text_message1 = TextSendMessage(text="兩棵老樹(正榕、雀榕) 於2013年被社區提報為市定老樹，成功阻擋將要拆除眷村的怪手，因此居民匿稱他們為護村神樹。2019年台科大為兩棵老樹打開樹穴，讓大樹爺爺可以好好的喘口氣啦！")
         image_message = ImageSendMessage(
-            original_content_url='https://upload.cc/i1/2023/04/26/v30SR8.jpg',
-            preview_image_url='https://upload.cc/i1/2023/04/26/v30SR8.jpg'
+            original_content_url='https://i.imgur.com/Q2aTjmP.jpg',
+            preview_image_url='https://i.imgur.com/Q2aTjmP.jpg'
         )
         msg = sent_gametemp('msg1')
         line_bot_api.reply_message(event.reply_token, [text_message0,text_message1,image_message] + msg)
@@ -562,8 +563,8 @@ def handle_message(event):
         text_message1 = TextSendMessage(text="農試所&蠶改場宿舍第二站")
         text_message2 = TextSendMessage(text="農農業試驗所宿舍於1905年4月前在蟾蜍山下的今119巷街道旁陸續興建，養蠶所宿舍則於1910年代初期陸續設置。1958年，隨著畜產系改隸，位在半山腰的整排養豬舍則改建為農試所宿舍。隨著家庭成員增加，這些房舍的內部格局也因應需求做了改建。居住在這裡的研究人員與行政人員，在完善組織合作下所進行的菇類、花生、雞禽、柑橘、藥用植物、土壤肥料、桑蠶等的培育，為臺灣農業技術與經濟發展寫下新頁。\n隨著1977年農試所遷到霧峰、蠶業改良場遷至苗栗，宿舍所在地也於2000年因都市計畫被劃為臺灣科技大學校地，至2022年員工住戶已全數搬離。然經民間團體與原住戶的努力爭取，2018年10月15日有八棟宿舍公告為臺北市歷史建築，名稱為「農業試驗所宿舍群」及「蠶業改良所宿舍」。")
         image_message = ImageSendMessage(
-            original_content_url='https://postimg.cc/wtB4Rn2W',
-            preview_image_url='https://postimg.cc/wtB4Rn2W'
+            original_content_url='https://i.imgur.com/3452TMO.jpg',
+            preview_image_url='https://i.imgur.com/3452TMO.jpg'
         )
         msg = sent_gametemp('msg2')
         line_bot_api.reply_message(event.reply_token, [text_message0,text_message1,text_message2] + msg)
@@ -572,8 +573,8 @@ def handle_message(event):
         text_message0 = TextSendMessage(text="答錯了...沒關係 ! 再挑戰一次 ! 可以再看一次故事確認答案喔~")
         text_message1 = TextSendMessage(text="猜到了嗎？這是「水」字型的圍欄，它與以前社區旁的瑠公圳圍欄相同，目前仍有幾處被保存著。")
         image_message = ImageSendMessage(
-            original_content_url='https://upload.cc/i1/2023/04/26/hKljzO.jpg',
-            preview_image_url='https://upload.cc/i1/2023/04/26/hKljzO.jpg'
+            original_content_url='https://i.imgur.com/S7Znt1B.jpg',
+            preview_image_url='https://i.imgur.com/S7Znt1B.jpg'
         )
         msg = sent_gametemp('msg3')
         line_bot_api.reply_message(event.reply_token, [text_message0,text_message1,image_message] + msg)
