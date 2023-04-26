@@ -97,6 +97,7 @@ def handle_message(event):
                 ]
             )
         )
+        line_bot_api.reply_message(event.reply_token, message)
     
     #蟾蜍山地圖
     if '蟾蜍山地圖' in msg:
@@ -118,6 +119,7 @@ def handle_message(event):
                 ]
             )
         )
+        line_bot_api.reply_message(event.reply_token, message)
     #選單說明
     if '選單說明' in msg:
         text_message1 = TextSendMessage(
@@ -173,6 +175,7 @@ def handle_message(event):
                 ]
             )
         )
+        line_bot_api.reply_message(event.reply_token, message)
     
     #景點故事七項
     if '景點故事並開始折價挑戰' in msg:
@@ -193,7 +196,6 @@ def handle_message(event):
                          data='護村神樹'
                      ),
                     PostbackAction(
-                        #宿舍1故事改動
                         label='農試所 & 蠶改場宿舍',
                         data='農試所1',
                      ),
@@ -231,6 +233,33 @@ def handle_message(event):
         message2 = TemplateSendMessage(
             alt_text='ButtonsTemplate',
             template=ButtonsTemplate(
+            thumbnail_image_url='https://mag.clab.org.tw/wp-content/uploads/2021/01/07-3.jpg',
+                title='景點故事介紹',
+                text='請選擇想要觀看的景點故事內容 : ',
+                actions=[
+                    PostbackAction(
+                        #宿舍2故事待補
+                        label='農試所宿舍2',
+                        data='農試所2',
+                     ),
+                    PostbackAction(
+                        label='夫妻樹',
+                        data='夫妻樹',
+                     ),
+                    PostbackAction(
+                        label='古道',
+                        data='古道',
+                     ),
+                    PostbackAction(
+                        label='瑠公圳',
+                        data='瑠公圳',
+                     )
+                ]
+            )
+        )
+        message3 = TemplateSendMessage(
+            alt_text='ButtonsTemplate',
+            template=ButtonsTemplate(
             thumbnail_image_url='https://scontent.ftpe8-4.fna.fbcdn.net/v/t39.30808-6/324237402_919417792388738_370498147454953229_n.jpg?stp=cp6_dst-jpg&_nc_cat=104&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Ke5RACu0YW4AX_2DpAp&_nc_ht=scontent.ftpe8-4.fna&oh=00_AfA7KYhoZO30wTGfRHuYTvdFwg3oNFTeEQnmUVFmWvICXQ&oe=644EA8A8',
                 title='折價挑戰問答',
                 text='折價挑戰問答的題目皆出自「景點故事」中的內容，共有三題，準備好了就開始吧！ ',
@@ -246,7 +275,7 @@ def handle_message(event):
                 ]
             )
         )
-        line_bot_api.reply_message(event.reply_token, [message1,message2])
+        line_bot_api.reply_message(event.reply_token, [message1,message2,message3])
 #--------------------------------處理文字訊息--------------------------------
 
 #---------------------------------處理選擇之後的事件---------------------------------
