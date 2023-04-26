@@ -9,7 +9,9 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
-
+from linebot.models import MessageEvent, TemplateSendMessage
+from linebot.models.template import ButtonsTemplate
+from linebot.models.actions import PostbackAction
 
 # ======這裡是呼叫的檔案內容=====
 from message import *
