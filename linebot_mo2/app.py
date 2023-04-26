@@ -487,8 +487,18 @@ def handle_message(event):
     if data == '關於蟾蜍山':
         text_message = TextSendMessage(text="蟾蜍山聚落位於臺北盆地南端、臺大公館商圈旁。\n山城聚落內保留了都市發展的軌跡，包含清代的水利設施、日治時期的農業研究佈局、中美協防的軍事地景、臺北市目前唯一完整保留的空軍眷村「煥民新村」、結合軍眷及臺北城鄉移民的自力營造聚落等，因其豐富的歷史文化及生態資源，2014年被指定為臺北市文化景觀。")
         image_message = ImageSendMessage(
-            original_content_url='https://i.imgur.com/uzOQLfo.jpg',
-            preview_image_url='https://i.imgur.com/uzOQLfo.jpg'
+            original_content_url='https://farm4.staticflickr.com/3913/14781857292_16a36268ce.jpg',
+            preview_image_url='https://farm4.staticflickr.com/3913/14781857292_16a36268ce.jpg'
+        )
+        line_bot_api.reply_message(event.reply_token, [text_message,image_message])
+    elif data == '蟾蜍山由來':
+        text_message = TextSendMessage(text="傳說500年前某一天，劉海仙翁雲遊到景美一帶，遙望北方山巔妖氣沖天，發現一隻蟾蜍精盤據隘口、危害人畜，仙翁決心收妖，便用一串金錢幣引誘怪物上鉤，一不小心用力過猛，雙腳陷入石內。怪物收伏後，仙翁大笑離去，留下一對足跡供後人瞻仰（景美仙跡岩），而北方山巔則稱為「蟾蜍山」。")
+        line_bot_api.reply_message(event.reply_token, text_message)
+    elif data == '劉海仙翁':
+        text_message = TextSendMessage(text="道教全真派全真五祖之一的劉海蟾喜歡將頭髮梳至額前，長度齊眉，故稱此種頭髮為「劉海」，後為了區別，改稱「瀏海」。")
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/RaGOa0l.jpg',
+            preview_image_url='https://i.imgur.com/RaGOa0l.jpg'
         )
         line_bot_api.reply_message(event.reply_token, [text_message,image_message])
 
