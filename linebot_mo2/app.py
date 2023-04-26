@@ -9,9 +9,11 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
-from linebot.models import MessageEvent, TemplateSendMessage
-from linebot.models.template import ButtonsTemplate
 from linebot.models.actions import PostbackAction
+
+from linebot import (LineBotApi, WebhookHandler)
+from linebot.exceptions import (InvalidSignatureError)
+from linebot.models import *
 
 # ======這裡是呼叫的檔案內容=====
 from message import *
@@ -71,6 +73,51 @@ def handle_follow(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
+    #蟾蜍山簡介
+    if '蟾蜍山簡介' in msg:
+        message = TemplateSendMessage(
+            alt_text='ButtonsTemplate',
+            template=ButtonsTemplate(
+                thumbnail_image_url='https://farm4.staticflickr.com/3913/14781857292_16a36268ce.jpg',
+                title='蟾蜍山簡介',
+                text='請選擇您所需要的介紹內容',
+                actions=[
+                     PostbackAction(
+                         label='關於蟾蜍山',
+                         data='關於蟾蜍山'
+                     ),
+                    PostbackAction(
+                        label='蟾蜍山由來',
+                        data='蟾蜍山由來'
+                     ),
+                    PostbackAction(
+                         label='劉海仙翁',
+                         data='劉海仙翁'
+                     )
+                ]
+            )
+        )
+    
+    #蟾蜍山地圖
+    if '蟾蜍山地圖' in msg:
+        message = TemplateSendMessage(
+            alt_text='ButtonsTemplate',
+            template=ButtonsTemplate(
+                thumbnail_image_url='https://farm4.staticflickr.com/3913/14781857292_16a36268ce.jpg',
+                title='蟾蜍山地圖',
+                text='蟾蜍山位置 (google地圖)、蟾蜍山導覽地圖電子版',
+                actions=[
+                     PostbackAction(
+                         label='蟾蜍山位置在哪?',
+                         data='蟾蜍山位置'
+                     ),
+                    PostbackAction(
+                        label='蟾蜍山導覽地圖電子版',
+                        data='蟾蜍山導覽地圖'
+                     )
+                ]
+            )
+        )
     #選單說明
     if '選單說明' in msg:
         text_message1 = TextSendMessage(
@@ -106,124 +153,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, [text_message1,text_message2,text_message3,text_message4,image_message])
 
     #咖啡廳
-    elif '咖啡廳菜單內容' in msg:
-        message = ImageSendMessage(
-            original_content_url='https://1.bp.blogspot.com/-F86C_BMmMYI/Xex882MsevI/AAAAAAAAUyY/yCzCFH05qBQyApsCdO5j-dzylyR-y5VgQCLcBGAsYHQ/s1600/%25E3%2580%2590%25E8%25B7%25AF%25E6%2598%2593%25E8%258E%258E%25E5%2592%2596%25E5%2595%25A1%25E3%2580%25912019%25E8%258F%259C%25E5%2596%25AE%25E5%2583%25B9%25E7%259B%25AE%25E8%25A1%25A8.jpg',
-            preview_image_url='https://1.bp.blogspot.com/-F86C_BMmMYI/Xex882MsevI/AAAAAAAAUyY/yCzCFH05qBQyApsCdO5j-dzylyR-y5VgQCLcBGAsYHQ/s1600/%25E3%2580%2590%25E8%25B7%25AF%25E6%2598%2593%25E8%258E%258E%25E5%2592%2596%25E5%2595%25A1%25E3%2580%25912019%25E8%258F%259C%25E5%2596%25AE%25E5%2583%25B9%25E7%259B%25AE%25E8%25A1%25A8.jpg'
-        )
-        line_bot_api.reply_message(event.reply_token, message)
-    
-    #景點故事七項
-    elif '護村神樹' in msg:
-        text_message = TextSendMessage(text="兩棵老樹(正榕、雀榕) 於2013年被社區提報為市定老樹，成功阻擋將要拆除眷村的怪手，因此居民匿稱他們為護村神樹。2019年台科大為兩棵老樹打開樹穴，讓大樹爺爺可以好好的喘口氣啦！")
-        image_message = ImageSendMessage(
-            original_content_url='https://upload.cc/i1/2023/04/26/v30SR8.jpg',
-            preview_image_url='https://upload.cc/i1/2023/04/26/v30SR8.jpg'
-        )
-        line_bot_api.reply_message(event.reply_token, [text_message,image_message])
-    elif '農試所1' in msg:
-        text_message1 = TextSendMessage(
-            text="農業試驗所宿舍於1905年4月前在蟾蜍山下的今119巷街道旁陸續興建，養蟾所宿舍則於1910年代初期陸續設置\n 1958年隨著畜產系改隸，位在半山腰的整排養豬舍則改建為農試所宿舍。")
-        text_message2 = text_message(
-            text="居住在這裡的研究人員與行政人員，在完善組織合作下所進行的菇類、花生、雞禽、柑橘、藥用植物、土壤肥料、桑蠶等的培育，為臺灣農業技術與經濟發展寫下新頁。隨著1977年農試所遷到霧峰、蠶業改良場遷至苗栗，宿舍所在地也於2000年因都市計畫被劃為臺灣科技大學校地，至2022年員工住戶已全數搬離。")
-        text_message3 = text_message(
-            text="然經民間團體與原住戶的努力爭取，2018年10月15日有八棟宿舍公告為臺北市歷史建築，名稱為「農業試驗所宿舍群」及「蠶業改良所宿舍」。"
-        )
-        image_message = ImageSendMessage(
-            original_content_url='https://upload.cc/i1/2023/04/26/XsliyP.jpg',
-            preview_image_url='https://upload.cc/i1/2023/04/26/XsliyP.jpg'
-        )
-        line_bot_api.reply_message(event.reply_token, [text_message1,text_message2,text_message3,image_message])
-    
-    #蟾蜍山地圖 未連接!!!!!
-    elif '蟾蜍山地圖資訊' in msg:
-        message = ImageSendMessage(
-            # 放地圖
-            original_content_url="https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.6435-9/72642222_634082933787548_5027039107189047296_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=3mHh5UgKudUAX8IBe2B&_nc_ht=scontent.ftpe8-1.fna&oh=00_AfAcp7GMZ2_41uOQeHt6jpNO0nEdDXW8704XlBCnSTqXbQ&oe=645E4840",
-            preview_image_url="https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.6435-9/72642222_634082933787548_5027039107189047296_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=3mHh5UgKudUAX8IBe2B&_nc_ht=scontent.ftpe8-1.fna&oh=00_AfAcp7GMZ2_41uOQeHt6jpNO0nEdDXW8704XlBCnSTqXbQ&oe=645E4840"
-        )
-        line_bot_api.reply_message(event.reply_token, message)
-    elif '蟾蜍山位置資訊' in msg:
-        message = LocationSendMessage(
-            title='蟾蜍山',
-            address='蟾蜍山',
-            latitude="25.009825001671054",
-            longitude="121.540005115302"
-        )
-        line_bot_api.reply_message(event.reply_token, message)
-    
-    #折價挑戰
-    elif '開始折價挑戰' in msg:
-        message = TextSendMessage(
-            text="折價挑戰第一題 : 蟾蜍山的活動中心名稱是? (A)蟾蜍山大後院 (B)蟾蜍山大客廳 (C)蟾蜍山大舞廳")
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'A' in msg:
-        message = TextSendMessage(text="嗯......好像不太對喔，再想想看吧?")
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'C' in msg:
-        message = TextSendMessage(text="嗯......好像不太對喔，再想想看吧?")
-        line_bot_api.reply_message(event.reply_token, message)
-    elif 'B' in msg:
-        message = TextSendMessage(text="太棒了！回答正確，請繼續進行第二題......")
-        line_bot_api.reply_message(event.reply_token, message)
-    else:
-        # else : 重複用戶的發問
-        message = TextSendMessage(text="好像沒有 : " + msg + "這個功能噢！")
-        line_bot_api.reply_message(event.reply_token, message)
-
-
-#給予使用者選項 : 蟾蜍山簡介、咖啡廳菜單、景點故事、折價挑戰題目
-@handler.add(MessageEvent, message=TemplateSendMessage)
-def handle_message(event):
-    msg = event.message.text
-    #蟾蜍山簡介
-    if '蟾蜍山簡介' in msg:
-        message = TemplateSendMessage(
-            alt_text='ButtonsTemplate',
-            template=ButtonsTemplate(
-                thumbnail_image_url='https://farm4.staticflickr.com/3913/14781857292_16a36268ce.jpg',
-                title='蟾蜍山簡介',
-                text='請選擇您所需要的介紹內容',
-                actions=[
-                     PostbackAction(
-                         label='關於蟾蜍山',
-                         text='關於蟾蜍山'
-                     ),
-                    PostbackAction(
-                        label='蟾蜍山由來',
-                        text='蟾蜍山由來'
-                     ),
-                    PostbackAction(
-                         label='劉海仙翁',
-                         text='劉海仙翁'
-                     )
-                ]
-            )
-        )
-
-    #蟾蜍山地圖
-    if '蟾蜍山地圖' in msg:
-        message = TemplateSendMessage(
-            alt_text='ButtonsTemplate',
-            template=ButtonsTemplate(
-                thumbnail_image_url='https://farm4.staticflickr.com/3913/14781857292_16a36268ce.jpg',
-                title='蟾蜍山地圖',
-                text='蟾蜍山位置 (google地圖)、蟾蜍山導覽地圖電子版',
-                actions=[
-                     PostbackAction(
-                         label='蟾蜍山位置在哪?',
-                         text='蟾蜍山位置'
-                     ),
-                    PostbackAction(
-                        label='蟾蜍山導覽地圖電子版',
-                        text='蟾蜍山導覽地圖'
-                     )
-                ]
-            )
-        )
-
-    #咖啡廳
-    if '咖啡廳菜單' in msg:
+    elif '咖啡廳菜單' in msg:
         message = TemplateSendMessage(
             alt_text='ButtonsTemplate',
             template=ButtonsTemplate(
@@ -235,7 +165,7 @@ def handle_message(event):
                          label='查看咖啡廳菜單',
                          data='咖啡廳菜單內容'
                      ),
-                    PostbackAction(     #要改
+                    PostbackAction(
                         label='移轉到外送訂餐頁面',
                         data='跳轉頁面',
                      )
@@ -243,63 +173,8 @@ def handle_message(event):
                 ]
             )
         )
-
-    #景點故事recall
-    if '再看景點故事' in msg:
-        image_message = ImageSendMessage(
-        original_content_url='https://upload.cc/i1/2023/04/26/LTjJE9.jpg',
-        preview_image_url='https://upload.cc/i1/2023/04/26/LTjJE9.jpg'
-        )
-
-        message1 = TemplateSendMessage(
-            alt_text='ButtonsTemplate',
-            template=ButtonsTemplate(
-                thumbnail_image_url='https://mag.clab.org.tw/wp-content/uploads/2021/01/07-3.jpg',
-                title='景點故事介紹',
-                text='請選擇想要觀看的景點故事內容 : ',
-                actions=[
-                    PostbackAction(
-                         label='護村神樹',
-                         data='護村神樹'
-                     ),
-                    PostbackAction(
-                        #宿舍1故事改動
-                        label='農試所 & 蠶改場宿舍',
-                        data='農試所1',
-                     ),
-                    PostbackAction(
-                        label='公廁',
-                        data='公廁',
-                     ),
-                    PostbackAction(
-                        label='瑠公圳造型圍欄',
-                        data='造型圍欄',
-                     ),
-                    PostbackAction(
-                        #宿舍2故事待補
-                        label='農試所宿舍2',
-                        data='農試所2',
-                     ),
-                    PostbackAction(
-                        label='夫妻樹',
-                        data='夫妻樹',
-                     ),
-                    PostbackAction(
-                        label='古道',
-                        data='古道',
-                     ),
-                    PostbackAction(
-                        label='瑠公圳',
-                        data='瑠公圳',
-                     )
-                ]
-            ),
-            image_aspect_ratio='rectangle',
-            image_size='cover',
-            messages1=[image_message,template]
-        )
-        line_bot_api.reply_message(event.reply_token, message1)
-
+    
+    #景點故事七項
     if '景點故事並開始折價挑戰' in msg:
         image_message = ImageSendMessage(
         original_content_url='https://upload.cc/i1/2023/04/26/LTjJE9.jpg',
@@ -372,8 +247,72 @@ def handle_message(event):
             )
         )
         line_bot_api.reply_message(event.reply_token, [message1,message2])
+#--------------------------------處理文字訊息--------------------------------
 
-#折價遊戲函式
+#---------------------------------處理選擇之後的事件---------------------------------
+@handler.add(MessageEvent, message=TemplateSendMessage)
+def handle_message(event):
+    msg = event.message.text
+
+    #景點故事recall
+    if '再看景點故事' in msg:
+        image_message = ImageSendMessage(
+        original_content_url='https://upload.cc/i1/2023/04/26/LTjJE9.jpg',
+        preview_image_url='https://upload.cc/i1/2023/04/26/LTjJE9.jpg'
+        )
+
+        message1 = TemplateSendMessage(
+            alt_text='ButtonsTemplate',
+            template=ButtonsTemplate(
+                thumbnail_image_url='https://mag.clab.org.tw/wp-content/uploads/2021/01/07-3.jpg',
+                title='景點故事介紹',
+                text='請選擇想要觀看的景點故事內容 : ',
+                actions=[
+                    PostbackAction(
+                         label='護村神樹',
+                         data='護村神樹'
+                     ),
+                    PostbackAction(
+                        #宿舍1故事改動
+                        label='農試所 & 蠶改場宿舍',
+                        data='農試所1',
+                     ),
+                    PostbackAction(
+                        label='公廁',
+                        data='公廁',
+                     ),
+                    PostbackAction(
+                        label='瑠公圳造型圍欄',
+                        data='造型圍欄',
+                     ),
+                    PostbackAction(
+                        #宿舍2故事待補
+                        label='農試所宿舍2',
+                        data='農試所2',
+                     ),
+                    PostbackAction(
+                        label='夫妻樹',
+                        data='夫妻樹',
+                     ),
+                    PostbackAction(
+                        label='古道',
+                        data='古道',
+                     ),
+                    PostbackAction(
+                        label='瑠公圳',
+                        data='瑠公圳',
+                     )
+                ]
+            ),
+            image_aspect_ratio='rectangle',
+            image_size='cover',
+            messages1=[image_message,template]
+        )
+        line_bot_api.reply_message(event.reply_token, message1)
+#---------------------------------處理選擇之後的事件---------------------------------
+
+
+#---------------------------------折價遊戲函式---------------------------------
 def sent_gametemp(msg):
         if msg == 'msg1':
             text_message = TextSendMessage(text="第一題 : \n\n 請問哪一個不是蟾蜍山兩棵護村神樹大樹爺爺的品種?")
@@ -452,8 +391,9 @@ def sent_gametemp(msg):
                 )
             )
             return [text_message,template]
+#---------------------------------折價遊戲函式---------------------------------
 
-#處理選單選項後的事件
+#---------------------------------處理選單選項後的事件---------------------------------
 @handler.add(PostbackEvent)
 def handle_message(event):
     data = event.postback.data
@@ -608,3 +548,4 @@ def handle_message(event):
         )
         msg = sent_gametemp('msg3')
         line_bot_api.reply_message(event.reply_token, [text_message0,text_message1,image_message] + msg)
+#---------------------------------處理選單選項後的事件---------------------------------
