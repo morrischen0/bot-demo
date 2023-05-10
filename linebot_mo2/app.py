@@ -178,6 +178,10 @@ def handle_message(event):
                     PostbackAction(
                         label='移轉到外送訂餐頁面',
                         data='跳轉頁面',
+                    ),
+                    PostbackAction(
+                        label='開始折價挑戰，回答問題享折扣',
+                        data='折價挑戰',
                     )
 
                 ]
@@ -269,10 +273,14 @@ def handle_message(event):
         )
         line_bot_api.reply_message(event.reply_token, [message1,message2,message3])
     '''
-    if '景點故事並開始折價挑戰' in msg:
+    if '景點故事與折價挑戰' in msg:
         image_message = ImageSendMessage(
         original_content_url='https://i.imgur.com/wHa8qnG.jpg',
         preview_image_url='https://i.imgur.com/wHa8qnG.jpg'
+        )
+
+        message0 = TextSendMessage(
+            text = "以下是我們推薦的遊覽路線，建議由\"景點1至7\" 或者 \"景點7至1\" 的順序來遊覽蟾蜍山噢！"
         )
 
         message1 = TemplateSendMessage(
@@ -370,12 +378,13 @@ def handle_message(event):
                 ]
             )
         )
+        #原本的景點故事中折價挑戰
         message2 = TemplateSendMessage(
             alt_text='ButtonsTemplate',
             template=ButtonsTemplate(
             thumbnail_image_url='https://mag.clab.org.tw/wp-content/uploads/2021/01/07-3.jpg',
-                title='折價挑戰問答',
-                text='折價挑戰問答的題目皆出自「景點故事」中的內容，共有三題，準備好了就開始吧！ ',
+                title='咖啡廳折價挑戰問答',
+                text='咖啡廳折價挑戰問答的題目皆出自「景點故事」中的內容，共有三題，準備好了就開始吧！ ',
                 actions=[
                     PostbackAction(
                          label='開始折價挑戰!',
@@ -388,7 +397,7 @@ def handle_message(event):
                 ]
             )
         )
-        line_bot_api.reply_message(event.reply_token, [image_message,message1,message2])
+        line_bot_api.reply_message(event.reply_token, [message0,image_message,message1,message2])
 
 # --------------------------------處理文字訊息--------------------------------
 
@@ -592,9 +601,9 @@ def handle_message(event):
             original_content_url='https://1.bp.blogspot.com/-F86C_BMmMYI/Xex882MsevI/AAAAAAAAUyY/yCzCFH05qBQyApsCdO5j-dzylyR-y5VgQCLcBGAsYHQ/s1600/%25E3%2580%2590%25E8%25B7%25AF%25E6%2598%2593%25E8%258E%258E%25E5%2592%2596%25E5%2595%25A1%25E3%2580%25912019%25E8%258F%259C%25E5%2596%25AE%25E5%2583%25B9%25E7%259B%25AE%25E8%25A1%25A8.jpg',
             preview_image_url='https://1.bp.blogspot.com/-F86C_BMmMYI/Xex882MsevI/AAAAAAAAUyY/yCzCFH05qBQyApsCdO5j-dzylyR-y5VgQCLcBGAsYHQ/s1600/%25E3%2580%2590%25E8%25B7%25AF%25E6%2598%2593%25E8%258E%258E%25E5%2592%2596%25E5%2595%25A1%25E3%2580%25912019%25E8%258F%259C%25E5%2596%25AE%25E5%2583%25B9%25E7%259B%25AE%25E8%25A1%25A8.jpg'
         )
+        
 
-        line_bot_api.reply_message(
-            event.reply_token, [text_message, image_message])
+        line_bot_api.reply_message(event.reply_token, [text_message, image_message])
     elif data == '跳轉頁面':
         text_message1 = TextSendMessage(text='點擊連結跳轉至外送平台介面點餐')
         text_message2 = TextSendMessage(
