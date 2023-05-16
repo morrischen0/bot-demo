@@ -172,6 +172,10 @@ def handle_message(event):
                 text='請選擇您需要的功能',
                 actions=[
                     PostbackAction(
+                        label='咖啡廳位置地圖',
+                        data='咖啡廳位置'
+                    ),
+                    PostbackAction(
                         label='查看咖啡廳菜單',
                         data='咖啡廳菜單內容'
                     ),
@@ -626,6 +630,16 @@ def handle_message(event):
             # 放地圖
             original_content_url="https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.6435-9/72642222_634082933787548_5027039107189047296_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=3mHh5UgKudUAX8IBe2B&_nc_ht=scontent.ftpe8-1.fna&oh=00_AfAcp7GMZ2_41uOQeHt6jpNO0nEdDXW8704XlBCnSTqXbQ&oe=645E4840",
             preview_image_url="https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.6435-9/72642222_634082933787548_5027039107189047296_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=3mHh5UgKudUAX8IBe2B&_nc_ht=scontent.ftpe8-1.fna&oh=00_AfAcp7GMZ2_41uOQeHt6jpNO0nEdDXW8704XlBCnSTqXbQ&oe=645E4840"
+        )
+        line_bot_api.reply_message(event.reply_token, message)
+
+    #咖啡廳位置
+    if data == '咖啡廳位置':
+        message = LocationSendMessage(
+            title='蟾蜍山咖啡廳',
+            address='蟾蜍山咖啡廳',
+            latitude="25.009825001671054",
+            longitude="121.540005115302"
         )
         line_bot_api.reply_message(event.reply_token, message)
 
