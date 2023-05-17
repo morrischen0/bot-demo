@@ -279,8 +279,8 @@ def handle_message(event):
     '''
     if '景點故事與折價挑戰' in msg:
         image_message = ImageSendMessage(
-        original_content_url='https://imgur.com/a/s9fGsQX',
-        preview_image_url='https://imgur.com/a/s9fGsQX'
+        original_content_url='https://i.imgur.com/XosFNWu.jpg',
+        preview_image_url='https://i.imgur.com/XosFNWu.jpg'
         )
 
         message0 = TextSendMessage(
@@ -646,8 +646,8 @@ def handle_message(event):
    # 景點故事recall
     if data == '再看景點故事':
         image_message = ImageSendMessage(
-            original_content_url='https://imgur.com/a/s9fGsQX',
-            preview_image_url='https://imgur.com/a/s9fGsQX'
+            original_content_url='https://i.imgur.com/XosFNWu.jpg',
+            preview_image_url='https://i.imgur.com/XosFNWu.jpg'
         )
         '''
         message1 = TemplateSendMessage(
