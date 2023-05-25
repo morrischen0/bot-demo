@@ -169,7 +169,7 @@ def handle_message(event):
             template=ButtonsTemplate(
                 thumbnail_image_url='https://d1ralsognjng37.cloudfront.net/4b9787e2-2a36-4ad8-b65c-80ac479d0689.jpeg',
                 title='咖啡廳菜單 & 外送訂餐',
-                text='請選擇您需要的功能',
+                text='請選擇您需要的功能！，需要內用／外帶取餐請使用「查看咖啡廳菜單」點選表單，需要外送請點選「外送訂餐」',
                 actions=[
                     PostbackAction(
                         label='咖啡廳位置地圖',
@@ -598,9 +598,9 @@ def handle_message(event):
             event.reply_token, [text_message, image_message])
 
     # 咖啡廳菜單2個
-    if data == '咖啡廳菜單內容':
+    if data == '咖啡廳菜單內容': 
         text_message = TextSendMessage(
-            text="請參考我們的咖啡廳菜單 : https://forms.gle/nPCF2cheKsDQpLEJ9")
+            text="請參考我們的咖啡廳菜單，內用/外帶請進入表單點餐 : https://forms.gle/nPCF2cheKsDQpLEJ9")
         image_message = ImageSendMessage(
             original_content_url='https://1.bp.blogspot.com/-F86C_BMmMYI/Xex882MsevI/AAAAAAAAUyY/yCzCFH05qBQyApsCdO5j-dzylyR-y5VgQCLcBGAsYHQ/s1600/%25E3%2580%2590%25E8%25B7%25AF%25E6%2598%2593%25E8%258E%258E%25E5%2592%2596%25E5%2595%25A1%25E3%2580%25912019%25E8%258F%259C%25E5%2596%25AE%25E5%2583%25B9%25E7%259B%25AE%25E8%25A1%25A8.jpg',
             preview_image_url='https://1.bp.blogspot.com/-F86C_BMmMYI/Xex882MsevI/AAAAAAAAUyY/yCzCFH05qBQyApsCdO5j-dzylyR-y5VgQCLcBGAsYHQ/s1600/%25E3%2580%2590%25E8%25B7%25AF%25E6%2598%2593%25E8%258E%258E%25E5%2592%2596%25E5%2595%25A1%25E3%2580%25912019%25E8%258F%259C%25E5%2596%25AE%25E5%2583%25B9%25E7%259B%25AE%25E8%25A1%25A8.jpg'
@@ -609,7 +609,7 @@ def handle_message(event):
 
         line_bot_api.reply_message(event.reply_token, [text_message, image_message])
     elif data == '跳轉頁面':
-        text_message1 = TextSendMessage(text='點擊連結跳轉至外送平台介面點餐')
+        text_message1 = TextSendMessage(text='點擊連結跳轉至外送平台介面點餐，若要內用／外帶請選擇「查看咖啡廳菜單」功能！')
         text_message2 = TextSendMessage(
             text='https://www.foodpanda.com.tw/?gclid=CjwKCAjw9J2iBhBPEiwAErwpebNTXoAITefLkWhHI7mg5aCXk5TaBQW2TH2608pgm6ULBVpfcehmUBoC1N8QAvD_BwE')
         line_bot_api.reply_message(
