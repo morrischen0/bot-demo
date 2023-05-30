@@ -169,7 +169,7 @@ def handle_message(event):
             template=ButtonsTemplate(
                 thumbnail_image_url='https://d1ralsognjng37.cloudfront.net/4b9787e2-2a36-4ad8-b65c-80ac479d0689.jpeg',
                 title='咖啡廳菜單 & 外送訂餐',
-                text='請選擇您需要的功能！，需要內用／外帶取餐請使用「查看咖啡廳菜單」點選表單，需要外送請點選「外送訂餐」',
+                text='請選擇您需要的功能！，內用&外帶取餐請使用「咖啡廳菜單&點餐」點選表單，外送請點選「移轉到外送頁面」',
                 actions=[
                     PostbackAction(
                         label='咖啡廳位置地圖',
@@ -180,7 +180,7 @@ def handle_message(event):
                         data='咖啡廳菜單內容'
                     ),
                     PostbackAction(
-                        label='移轉到外送訂餐頁面',
+                        label='移轉到外送頁面',
                         data='跳轉頁面',
                     ),
                     PostbackAction(
