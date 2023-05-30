@@ -628,8 +628,8 @@ def handle_message(event):
     elif data == '蟾蜍山導覽地圖':
         message = ImageSendMessage(
             # 放地圖
-            original_content_url="https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.6435-9/72642222_634082933787548_5027039107189047296_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=3mHh5UgKudUAX8IBe2B&_nc_ht=scontent.ftpe8-1.fna&oh=00_AfAcp7GMZ2_41uOQeHt6jpNO0nEdDXW8704XlBCnSTqXbQ&oe=645E4840",
-            preview_image_url="https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.6435-9/72642222_634082933787548_5027039107189047296_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=3mHh5UgKudUAX8IBe2B&_nc_ht=scontent.ftpe8-1.fna&oh=00_AfAcp7GMZ2_41uOQeHt6jpNO0nEdDXW8704XlBCnSTqXbQ&oe=645E4840"
+            original_content_url="https://i.imgur.com/DD1aMGP.jpg",
+            preview_image_url="https://i.imgur.com/DD1aMGP.jpg"
         )
         line_bot_api.reply_message(event.reply_token, message)
 
