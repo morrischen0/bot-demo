@@ -176,7 +176,7 @@ def handle_message(event):
                         data='咖啡廳位置'
                     ),
                     PostbackAction(
-                        label='查看咖啡廳菜單',
+                        label='咖啡廳菜單 & 點餐',
                         data='咖啡廳菜單內容'
                     ),
                     PostbackAction(
